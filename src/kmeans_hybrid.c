@@ -447,14 +447,21 @@ int main(int argc, char *argv[])
          * serial exactly (strict <, lowest index).
          * schedule(dynamic, 1024): on a hybrid P+E CPU, static chunks
          * leave fast cores idle at the barrier; dynamic hands out
-         * chunks on demand. See the header note. */
+         * chunks on demand. See the header note.
+         * -DHYBRID_STATIC_SCHEDULE (M5 benchmark variant only) selects
+         * schedule(static) from the same source, so the static-vs-dynamic
+         * comparison measures the schedule, not a different code path. */
 #pragma omp parallel default(none) shared(local, centroids, lassign, tsums, tcounts, local_n, d, k, nthreads, stride_d, stride_k) reduction(+:iter_sse)
         {
             int tid = omp_get_thread_num();
             double *lsums = tsums + (size_t)tid * stride_d;
             long long *lcounts = tcounts + (size_t)tid * stride_k;
 
+#ifdef HYBRID_STATIC_SCHEDULE
+#pragma omp for schedule(static)
+#else
 #pragma omp for schedule(dynamic, DYNAMIC_CHUNK)
+#endif
             for (size_t ii = 0; ii < local_n; ii++) {
                 const double *pt = local + ii * d;
                 double best_dist = 0.0;
@@ -606,8 +613,12 @@ int main(int argc, char *argv[])
         printf("  ranks: %d  threads/rank: %d  data: %s  N=%zu  D=%zu  "
                "K=%zu  max_iters=%zu  epsilon=%g\n",
                size, nthreads, datafile, n, d, k, max_iters, epsilon);
+#ifdef HYBRID_STATIC_SCHEDULE
+        printf("  schedule: static (see header note on hybrid P+E CPUs)\n");
+#else
         printf("  schedule: dynamic(%d) (see header note on hybrid P+E CPUs)\n",
                DYNAMIC_CHUNK);
+#endif
         printf("  iterations: %zu  converged: %s  final max centroid "
                "shift: %.6g\n",
                iter, converged ? "yes" : "no", shift);

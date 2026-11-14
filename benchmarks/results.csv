@@ -1,0 +1,70 @@
+experiment,implementation,ranks,threads,units,dataset,n,d,k,max_iters,epsilon,repeat,iterations,converged,wall_s,compute_s,comm_s,time_per_iter_s,oversubscribed,schedule,note
+strong,serial,1,1,1,medium-hard,500000,64,32,100,1e-6,1,100,no,151.54,,,1.5154,no,,
+strong,serial,1,1,1,medium-hard,500000,64,32,100,1e-6,2,100,no,153.619,,,1.5362,no,,
+strong,serial,1,1,1,medium-hard,500000,64,32,100,1e-6,3,100,no,153.003,,,1.53,no,,
+strong,hybrid,1,1,1,medium-hard,500000,64,32,100,1e-6,1,100,no,158.114,157.716,0.328,1.5811,no,,sanity: MPI overhead vs serial
+strong,hybrid,1,2,2,medium-hard,500000,64,32,100,1e-6,1,100,no,137.056,136.24,0.699,1.3706,no,,
+strong,hybrid,1,2,2,medium-hard,500000,64,32,100,1e-6,2,100,no,136.982,136.307,0.587,1.3698,no,,
+strong,hybrid,1,2,2,medium-hard,500000,64,32,100,1e-6,3,100,no,92.577,92.321,0.207,0.9258,no,,
+strong,hybrid,2,1,2,medium-hard,500000,64,32,100,1e-6,1,100,no,65.004,63.813,1.474,0.65,no,,
+strong,hybrid,2,1,2,medium-hard,500000,64,32,100,1e-6,2,100,no,64.787,64.019,1.531,0.6479,no,,
+strong,hybrid,2,1,2,medium-hard,500000,64,32,100,1e-6,3,100,no,64.5,63.764,1.279,0.645,no,,
+strong,hybrid,2,2,4,medium-hard,500000,64,32,100,1e-6,1,100,no,64.896,63.633,1.293,0.649,no,,
+strong,hybrid,2,2,4,medium-hard,500000,64,32,100,1e-6,2,100,no,64.595,63.561,1.086,0.646,no,,
+strong,hybrid,2,2,4,medium-hard,500000,64,32,100,1e-6,3,100,no,64.267,63.088,1.301,0.6427,no,,
+strong,hybrid,4,1,4,medium-hard,500000,64,32,100,1e-6,1,100,no,72.803,66.896,7.589,0.728,no,,
+strong,hybrid,4,1,4,medium-hard,500000,64,32,100,1e-6,2,100,no,75.602,68.842,10.491,0.756,no,,
+strong,hybrid,4,1,4,medium-hard,500000,64,32,100,1e-6,3,100,no,74.094,67.946,7.368,0.7409,no,,
+strong,hybrid,1,4,4,medium-hard,500000,64,32,100,1e-6,1,100,no,92.78,92.483,0.247,0.9278,no,,
+strong,hybrid,1,4,4,medium-hard,500000,64,32,100,1e-6,2,100,no,92.966,92.704,0.215,0.9297,no,,
+strong,hybrid,1,4,4,medium-hard,500000,64,32,100,1e-6,3,100,no,92.673,92.423,0.186,0.9267,no,,
+strong,hybrid,4,2,8,medium-hard,500000,64,32,100,1e-6,1,100,no,82.842,72.701,19.328,0.8284,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,4,2,8,medium-hard,500000,64,32,100,1e-6,2,100,no,89.181,71.048,24.03,0.8918,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,4,2,8,medium-hard,500000,64,32,100,1e-6,3,100,no,83.294,77.535,23.917,0.8329,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,2,4,8,medium-hard,500000,64,32,100,1e-6,1,100,no,65.176,64.213,1.68,0.6518,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,2,4,8,medium-hard,500000,64,32,100,1e-6,2,100,no,64.529,63.727,1.267,0.6453,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,2,4,8,medium-hard,500000,64,32,100,1e-6,3,100,no,64.295,63.494,1.441,0.643,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,8,1,8,medium-hard,500000,64,32,100,1e-6,1,100,no,105.779,101.304,47.639,1.0578,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,8,1,8,medium-hard,500000,64,32,100,1e-6,2,100,no,102.409,97.158,58.324,1.0241,yes,,oversubscribed: 8 units on 4-core VM
+strong,hybrid,8,1,8,medium-hard,500000,64,32,100,1e-6,3,100,no,95.404,86.34,41.482,0.954,yes,,oversubscribed: 8 units on 4-core VM
+strong,mpi,2,1,2,medium-hard,500000,64,32,100,1e-6,1,100,no,55.18,,,0.5518,no,,
+strong,mpi,2,1,2,medium-hard,500000,64,32,100,1e-6,2,100,no,55.431,,,0.5543,no,,
+strong,mpi,2,1,2,medium-hard,500000,64,32,100,1e-6,3,100,no,55.707,,,0.5571,no,,
+strong,mpi,4,1,4,medium-hard,500000,64,32,100,1e-6,1,100,no,64.275,,,0.6428,no,,
+strong,mpi,4,1,4,medium-hard,500000,64,32,100,1e-6,2,100,no,65.921,,,0.6592,no,,
+strong,mpi,4,1,4,medium-hard,500000,64,32,100,1e-6,3,100,no,65.72,,,0.6572,no,,
+strong,mpi,8,1,8,medium-hard,500000,64,32,100,1e-6,1,100,no,74.998,,,0.75,yes,,oversubscribed: 8 units on 4-core VM
+strong,mpi,8,1,8,medium-hard,500000,64,32,100,1e-6,2,100,no,86.204,,,0.862,yes,,oversubscribed: 8 units on 4-core VM
+strong,mpi,8,1,8,medium-hard,500000,64,32,100,1e-6,3,100,no,85.383,,,0.8538,yes,,oversubscribed: 8 units on 4-core VM
+strong,omp,1,2,2,medium-hard,500000,64,32,100,1e-6,1,100,no,56.091,,,0.5609,no,,
+strong,omp,1,2,2,medium-hard,500000,64,32,100,1e-6,2,100,no,57.822,,,0.5782,no,,
+strong,omp,1,2,2,medium-hard,500000,64,32,100,1e-6,3,100,no,56.685,,,0.5669,no,,
+strong,omp,1,4,4,medium-hard,500000,64,32,100,1e-6,1,100,no,61.065,,,0.6107,no,,
+strong,omp,1,4,4,medium-hard,500000,64,32,100,1e-6,2,100,no,63.053,,,0.6305,no,,
+strong,omp,1,4,4,medium-hard,500000,64,32,100,1e-6,3,100,no,62.713,,,0.6271,no,,
+static-vs-dynamic,hybrid,2,2,4,medium-hard,500000,64,32,100,1e-6,1,100,no,64.898,63.834,1.192,0.649,no,dynamic(1024),
+static-vs-dynamic,hybrid,2,2,4,medium-hard,500000,64,32,100,1e-6,2,100,no,65.791,64.79,1.245,0.6579,no,dynamic(1024),
+static-vs-dynamic,hybrid,2,2,4,medium-hard,500000,64,32,100,1e-6,3,100,no,65.991,65.176,1.507,0.6599,no,dynamic(1024),
+static-vs-dynamic,hybrid-static,2,2,4,medium-hard,500000,64,32,100,1e-6,1,100,no,56.145,55.258,1.474,0.5615,no,static,
+static-vs-dynamic,hybrid-static,2,2,4,medium-hard,500000,64,32,100,1e-6,2,100,no,55.459,54.514,1.087,0.5546,no,static,
+static-vs-dynamic,hybrid-static,2,2,4,medium-hard,500000,64,32,100,1e-6,3,100,no,56.096,55.158,1.515,0.561,no,static,
+static-vs-dynamic,hybrid,1,4,4,medium-hard,500000,64,32,100,1e-6,1,100,no,92.132,91.934,0.149,0.9213,no,dynamic(1024),
+static-vs-dynamic,hybrid,1,4,4,medium-hard,500000,64,32,100,1e-6,2,100,no,93.173,92.956,0.17,0.9317,no,dynamic(1024),
+static-vs-dynamic,hybrid,1,4,4,medium-hard,500000,64,32,100,1e-6,3,100,no,93.535,93.303,0.182,0.9354,no,dynamic(1024),
+static-vs-dynamic,hybrid-static,1,4,4,medium-hard,500000,64,32,100,1e-6,1,100,no,77.365,77.131,0.186,0.7736,no,static,
+static-vs-dynamic,hybrid-static,1,4,4,medium-hard,500000,64,32,100,1e-6,2,100,no,77.801,77.593,0.159,0.778,no,static,
+static-vs-dynamic,hybrid-static,1,4,4,medium-hard,500000,64,32,100,1e-6,3,100,no,77.563,77.352,0.165,0.7756,no,static,
+weak,hybrid,1,1,1,weak-125k,125000,64,32,100,1e-6,1,24,yes,5.755,5.706,0.037,0.2398,no,,
+weak,hybrid,1,1,1,weak-125k,125000,64,32,100,1e-6,2,24,yes,5.729,5.679,0.038,0.2387,no,,
+weak,hybrid,1,1,1,weak-125k,125000,64,32,100,1e-6,3,24,yes,5.662,5.613,0.037,0.2359,no,,
+weak,hybrid,2,1,2,weak-250k,250000,64,32,100,1e-6,1,100,no,33.689,33.135,1.017,0.3369,no,,
+weak,hybrid,2,1,2,weak-250k,250000,64,32,100,1e-6,2,100,no,33.294,32.813,0.66,0.3329,no,,
+weak,hybrid,2,1,2,weak-250k,250000,64,32,100,1e-6,3,100,no,33.153,32.572,0.961,0.3315,no,,
+weak,hybrid,4,1,4,medium-hard,500000,64,32,100,1e-6,1,100,no,78.297,70.406,11.648,0.783,no,,
+weak,hybrid,4,1,4,medium-hard,500000,64,32,100,1e-6,2,100,no,73.886,67.812,8.742,0.7389,no,,
+weak,hybrid,4,1,4,medium-hard,500000,64,32,100,1e-6,3,100,no,73.593,67.546,9.369,0.7359,no,,
+weak,hybrid,8,1,8,weak-1m,1000000,64,32,100,1e-6,1,100,no,206.506,174.078,69.927,2.0651,yes,,oversubscribed: 8 units on 4-core VM
+weak,hybrid,8,1,8,weak-1m,1000000,64,32,100,1e-6,2,100,no,195.409,180.099,68.181,1.9541,yes,,oversubscribed: 8 units on 4-core VM
+weak,hybrid,8,1,8,weak-1m,1000000,64,32,100,1e-6,3,100,no,199.605,164.822,72.45,1.996,yes,,oversubscribed: 8 units on 4-core VM
+large-headline,serial,1,1,1,large,1000000,128,64,100,1e-6,1,2,yes,13.229,,,6.6145,no,,"standard Large tier (R=10), headline number"
+large-headline,hybrid,2,2,4,large,1000000,128,64,100,1e-6,1,2,yes,16.968,10.402,6.487,8.484,no,,"standard Large tier (R=10), headline number"

@@ -69,6 +69,13 @@ def parse_args(argv):
     p.add_argument("--clusters", type=int, help="true clusters K")
     p.add_argument("--seed", type=int, default=42,
                    help="fixed RNG seed for reproducibility (default: 42)")
+    p.add_argument("--centre-range", type=float, default=CENTRE_RANGE,
+                   help="true centres uniform in [-R, R] (default: 10.0); "
+                        "smaller R with the same noise makes clusters "
+                        "overlap, so K-Means needs more iterations — "
+                        "the M5 'hard' datasets use R=3.0")
+    p.add_argument("--noise-std", type=float, default=NOISE_STD,
+                   help="per-dimension Gaussian noise std (default: 1.0)")
     p.add_argument("--out", required=True, help="output .bin path")
     args = p.parse_args(argv)
 
@@ -95,10 +102,11 @@ def main(argv=None):
                args.params["clusters"])
     rng = np.random.default_rng(args.seed)
 
-    centres = rng.uniform(-CENTRE_RANGE, CENTRE_RANGE, size=(k, d))
+    centres = rng.uniform(-args.centre_range, args.centre_range,
+                          size=(k, d))
     # Round-robin true labels: near-equal cluster sizes.
     labels = np.arange(n) % k
-    data = centres[labels] + rng.normal(0.0, NOISE_STD, size=(n, d))
+    data = centres[labels] + rng.normal(0.0, args.noise_std, size=(n, d))
     # Shuffle so file order carries no cluster structure (see docstring).
     data = data[rng.permutation(n)]
 
@@ -108,6 +116,8 @@ def main(argv=None):
         "dims": d,
         "clusters": k,
         "seed": args.seed,
+        "centre_range": args.centre_range,
+        "noise_std": args.noise_std,
         "dtype": "float64 little-endian, headerless, row-major",
         "bytes": n * d * 8,
         "format_note": "point i = elements [i*D, i*D+D); "
