@@ -19,7 +19,7 @@ MPI_SRC    := src/kmeans_mpi.c
 OMP_SRC    := src/kmeans_omp.c
 HYBRID_SRC := src/kmeans_hybrid.c
 
-.PHONY: all serial mpi omp hybrid clean help
+.PHONY: all serial mpi omp hybrid hybrid-static clean help
 
 all:
 	@built=0; \
@@ -44,6 +44,18 @@ omp:
 hybrid:
 	@$(MAKE) --no-print-directory -s _build_one SRC=$(HYBRID_SRC) OUT=$(BINDIR)/kmeans_hybrid MODE=hybrid 2>/dev/null \
 		|| echo "kmeans_hybrid: not implemented yet (Milestone 4)."
+
+# M5 benchmark variant only: same hybrid source with schedule(static),
+# so the static-vs-dynamic comparison measures the schedule, not a
+# different code path. Default hybrid build stays schedule(dynamic, 1024).
+hybrid-static:
+	@if [ -f "$(HYBRID_SRC)" ]; then \
+		mkdir -p $(BINDIR); \
+		$(MPICC) $(CFLAGS) $(OMPFLAGS) -DHYBRID_STATIC_SCHEDULE -o $(BINDIR)/kmeans_hybrid_static $(HYBRID_SRC) $(LDFLAGS) \
+		&& echo "built $(BINDIR)/kmeans_hybrid_static"; \
+	else \
+		echo "kmeans_hybrid: not implemented yet (Milestone 4)."; \
+	fi
 
 # Internal: build one implementation if its source exists.
 # MODE selects the compiler/flags for that implementation.
